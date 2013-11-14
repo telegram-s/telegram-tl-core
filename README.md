@@ -4,7 +4,7 @@ Contains basic classes for working with TL Serialization.
 
 This implementation contains minimul required subset of TL for working with telegraph.org messaging service.
 
-Read also
+More information
 ----------------
 #### Type Language documentation
 
@@ -19,3 +19,7 @@ http://telegram.org/
 #### Android Client that uses this library
 
 [![Telegram S](https://developer.android.com/images/brand/en_generic_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=org.telegram.android "Telegram S")
+
+Licence
+----------------
+This library uses [MIT Licence](LICENCE)

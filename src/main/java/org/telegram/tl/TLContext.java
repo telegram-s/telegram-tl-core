@@ -7,10 +7,14 @@ import java.util.HashMap;
 import java.util.zip.GZIPInputStream;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ex3ndr
- * Date: 25.10.13
- * Time: 16:38
+ * TypeLanguage context object. It performs deserialization of objects and vectors.
+ * All known classes might be registered in context for deserialization.
+ * Often this might be performed from inherited class in init() method call.
+ * If TL-Object contains static int field CLASS_ID, then it might be used for registration,
+ * but it uses reflection so it might be slow in some cases. It recommended to manually pass CLASS_ID
+ * to registerClass method.
+ *
+ * @author Korshakov Stepan <me@ex3ndr.com>
  */
 public abstract class TLContext {
     private HashMap<Integer, Class> registeredClasses = new HashMap<Integer, Class>();

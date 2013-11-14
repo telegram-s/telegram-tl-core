@@ -8,10 +8,12 @@ import java.util.*;
 import static org.telegram.tl.StreamingUtils.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ex3ndr
- * Date: 25.10.13
- * Time: 16:03
+ * Basic vector type in TL language
+ * For working with primitive internal types you might instantiate class TLIntVector, TLStringVector, TLLongVector for
+ * vector of integer, strings or long.
+ *
+ * @param <T> type of elements in vector
+ * @author Korshakov Stepan <me@ex3ndr.com>
  */
 public class TLVector<T> extends TLObject implements List<T> {
 

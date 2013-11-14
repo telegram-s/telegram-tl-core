@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ex3ndr
- * Date: 25.10.13
- * Time: 16:50
+ * Basic object for RPC methods. It contains special methods for deserializing result of RPC method call.
+ *
+ * @param <T> return type of method
+ * @author Korshakov Stepan <me@ex3ndr.com>
  */
 public abstract class TLMethod<T extends TLObject> extends TLObject {
     public T deserializeResponse(byte[] data, TLContext context) throws IOException {
-        return deserializeResponse(new ByteArrayInputStream(data),context);
+        return deserializeResponse(new ByteArrayInputStream(data), context);
     }
 
     public abstract T deserializeResponse(InputStream stream, TLContext context) throws IOException;

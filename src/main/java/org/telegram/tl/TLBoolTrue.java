@@ -1,10 +1,9 @@
 package org.telegram.tl;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ex3ndr
- * Date: 06.11.13
- * Time: 0:39
+ * Packed type of tl-bool true value
+ *
+ * @author Korshakov Stepan <me@ex3ndr.com>
  */
 public class TLBoolTrue extends TLBool {
 

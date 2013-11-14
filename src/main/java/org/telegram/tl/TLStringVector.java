@@ -1,10 +1,9 @@
 package org.telegram.tl;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ex3ndr
- * Date: 06.11.13
- * Time: 0:46
+ * TL Vector of strings. @see org.telegram.tl.TLVector
+ *
+ * @author Korshakov Stepan <me@ex3ndr.com>
  */
 public class TLStringVector extends TLVector<String> {
     public TLStringVector() {

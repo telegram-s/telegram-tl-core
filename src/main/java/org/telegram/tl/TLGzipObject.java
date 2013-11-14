@@ -8,10 +8,9 @@ import static org.telegram.tl.StreamingUtils.readTLBytes;
 import static org.telegram.tl.StreamingUtils.writeTLBytes;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ex3ndr
- * Date: 02.11.13
- * Time: 6:53
+ * Basic class of gzipped object
+ *
+ * @author Korshakov Stepan <me@ex3ndr.com>
  */
 public class TLGzipObject extends TLObject {
     public static final int CLASS_ID = 0x3072CFA1;

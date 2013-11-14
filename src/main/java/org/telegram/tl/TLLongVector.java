@@ -1,10 +1,9 @@
 package org.telegram.tl;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ex3ndr
- * Date: 25.10.13
- * Time: 16:02
+ * TL Vector of longs. @see org.telegram.tl.TLVector
+ *
+ * @author Korshakov Stepan <me@ex3ndr.com>
  */
 public class TLLongVector extends TLVector<Long> {
     public TLLongVector() {

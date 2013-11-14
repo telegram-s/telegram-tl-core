@@ -6,6 +6,26 @@ This implementation contains minimul required subset of TL for working with tele
 
 [![TL Core build server](http://ci.81port.com/app/rest/builds/buildType:%28id:TypeLanguage_JavaTlCore%29/statusIcon)](http://ci.81port.com/viewType.html?buildTypeId=TypeLanguage_JavaTlCore)
 
+Gradle
+----------------
+###### Include our repository
+````
+respository {
+  maven {
+    url "http://maven.81port.com/archiva/repository/internal/"
+  }
+}
+````
+
+###### Include tl-core
+````
+dependencies {
+  ...
+  compile "org.telegram:tl-core:1.0.+"
+  ...
+}
+````
+
 More information
 ----------------
 #### Type Language documentation

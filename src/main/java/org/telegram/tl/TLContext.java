@@ -18,6 +18,7 @@ import java.util.zip.GZIPInputStream;
  */
 public abstract class TLContext {
     private HashMap<Integer, Class> registeredClasses = new HashMap<Integer, Class>();
+    private HashMap<Integer, Class> registeredCompatClasses = new HashMap<Integer, Class>();
 
     public TLContext() {
         init();
@@ -50,6 +51,25 @@ public abstract class TLContext {
         registeredClasses.put(clazzId, tClass);
     }
 
+    public <T extends TLObject> void registerCompatClass(Class<T> tClass) {
+        try {
+            int classId = tClass.getField("CLASS_ID").getInt(null);
+            registeredCompatClasses.put(classId, tClass);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public <T extends TLObject> void registerCompatClass(int clazzId, Class<T> tClass) {
+        registeredCompatClasses.put(clazzId, tClass);
+    }
+
+    protected TLObject convertCompatClass(TLObject src) {
+        return src;
+    }
+
     public TLObject deserializeMessage(byte[] data) throws IOException {
         return deserializeMessage(new ByteArrayInputStream(data));
     }
@@ -69,6 +89,20 @@ public abstract class TLContext {
 
         if (clazzId == TLBoolFalse.CLASS_ID) {
             return new TLBoolFalse();
+        }
+
+        if (registeredCompatClasses.containsKey(clazzId)) {
+            try {
+                Class messageClass = registeredCompatClasses.get(clazzId);
+                TLObject message = (TLObject) messageClass.getConstructor().newInstance();
+                message.deserializeBody(stream, this);
+                return convertCompatClass(message);
+            } catch (DeserializeException e) {
+                throw e;
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new IOException("Unable to deserialize data");
+            }
         }
 
         try {

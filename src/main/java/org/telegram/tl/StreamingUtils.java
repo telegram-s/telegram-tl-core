@@ -463,10 +463,10 @@ public class StreamingUtils {
      * @return uint value
      */
     public static long readUInt(byte[] src, int offset) {
-        int a = src[offset + 0] & 0xFF;
-        int b = src[offset + 1] & 0xFF;
-        int c = src[offset + 2] & 0xFF;
-        int d = src[offset + 3] & 0xFF;
+        long a = src[offset + 0] & 0xFF;
+        long b = src[offset + 1] & 0xFF;
+        long c = src[offset + 2] & 0xFF;
+        long d = src[offset + 3] & 0xFF;
 
         return a + (b << 8) + (c << 16) + (d << 24);
     }
@@ -482,6 +482,6 @@ public class StreamingUtils {
         long a = readUInt(src, offset);
         long b = readUInt(src, offset + 4);
 
-        return a + (b << 32);
+        return (a & 0xFFFFFFFF) + ((b & 0xFFFFFFFF) << 32);
     }
 }

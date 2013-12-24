@@ -420,6 +420,24 @@ public class StreamingUtils {
     }
 
     /**
+     * Converting long to bytes
+     *
+     * @param value source long
+     * @return bytes of long
+     */
+    public static byte[] longToBytes(long value) {
+        return new byte[]{
+                (byte) (value & 0xFF),
+                (byte) ((value >> 8) & 0xFF),
+                (byte) ((value >> 16) & 0xFF),
+                (byte) ((value >> 24) & 0xFF),
+                (byte) ((value >> 32) & 0xFF),
+                (byte) ((value >> 40) & 0xFF),
+                (byte) ((value >> 48) & 0xFF),
+                (byte) ((value >> 56) & 0xFF)};
+    }
+
+    /**
      * Reading int from bytes array
      *
      * @param src source bytes

@@ -316,6 +316,28 @@ public class StreamingUtils {
     }
 
     /**
+     * Reading bytes from stream
+     *
+     * @param count  bytes count
+     * @param stream source stream
+     * @return readed bytes
+     * @throws IOException reading exception
+     */
+    public static void readBytes(byte[] buffer, int offset, int count, InputStream stream) throws IOException {
+        int woffset = 0;
+        while (woffset < count) {
+            int readed = stream.read(buffer, woffset + offset, count - woffset);
+            if (readed > 0) {
+                woffset += readed;
+            } else if (readed < 0) {
+                throw new IOException();
+            } else {
+                Thread.yield();
+            }
+        }
+    }
+
+    /**
      * Reading tl-bytes from stream
      *
      * @param stream source stream

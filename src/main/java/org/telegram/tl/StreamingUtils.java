@@ -89,6 +89,17 @@ public class StreamingUtils {
     }
 
     /**
+     * Writing byte array to stream
+     *
+     * @param data   data
+     * @param stream destination stream
+     * @throws IOException
+     */
+    public static void writeByteArray(byte[] data, int offset, int len, OutputStream stream) throws IOException {
+        stream.write(data, offset, len);
+    }
+
+    /**
      * Writing tl-bool value
      *
      * @param v      value

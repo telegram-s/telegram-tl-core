@@ -191,4 +191,8 @@ public abstract class TLContext {
             throw new IOException("Unable to deserialize vector");
         }
     }
+
+    public TLBytes allocateBytes(int size) {
+        return new TLBytes(new byte[size], 0, size);
+    }
 }

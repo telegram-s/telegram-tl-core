@@ -334,6 +334,18 @@ public class StreamingUtils {
      * @return readed bytes
      * @throws IOException reading exception
      */
+    public static void skipBytes(int count, InputStream stream) throws IOException {
+        stream.skip(count);
+    }
+
+    /**
+     * Reading bytes from stream
+     *
+     * @param count  bytes count
+     * @param stream source stream
+     * @return readed bytes
+     * @throws IOException reading exception
+     */
     public static void readBytes(byte[] buffer, int offset, int count, InputStream stream) throws IOException {
         int woffset = 0;
         while (woffset < count) {
@@ -367,10 +379,36 @@ public class StreamingUtils {
         int offset = (count + startOffset) % 4;
         if (offset != 0) {
             int offsetCount = 4 - offset;
-            readBytes(offsetCount, stream);
+            skipBytes(offsetCount, stream);
         }
 
         return raw;
+    }
+
+    /**
+     * Reading tl-bytes from stream with manual allocation
+     *
+     * @param stream  source stream
+     * @param context tl-context
+     * @return readed bytes
+     * @throws IOException reading exception
+     */
+    public static TLBytes readTLBytes(InputStream stream, TLContext context) throws IOException {
+        int count = stream.read();
+        int startOffset = 1;
+        if (count >= 254) {
+            count = stream.read() + (stream.read() << 8) + (stream.read() << 16);
+            startOffset = 4;
+        }
+        TLBytes res = context.allocateBytes(count);
+        readBytes(res.getData(), res.getOffset(), res.getLen(), stream);
+
+        int offset = (count + startOffset) % 4;
+        if (offset != 0) {
+            int offsetCount = 4 - offset;
+            skipBytes(offsetCount, stream);
+        }
+        return res;
     }
 
     /**

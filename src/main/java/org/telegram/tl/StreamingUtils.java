@@ -154,6 +154,34 @@ public class StreamingUtils {
     }
 
     /**
+     * Writing tl-bytes value
+     *
+     * @param v      value
+     * @param stream destination stream
+     * @throws IOException
+     */
+    public static void writeTLBytes(TLBytes v, OutputStream stream) throws IOException {
+        int startOffset = 1;
+        if (v.getLength() >= 254) {
+            startOffset = 4;
+            writeByte(254, stream);
+            writeByte(v.getLength() & 0xFF, stream);
+            writeByte((v.getLength() >> 8) & 0xFF, stream);
+            writeByte((v.getLength() >> 16) & 0xFF, stream);
+        } else {
+            writeByte(v.getLength(), stream);
+        }
+
+        writeByteArray(v.getData(), v.getOffset(), v.getLength(), stream);
+
+        int offset = (v.getLength() + startOffset) % 4;
+        if (offset != 0) {
+            int offsetCount = 4 - offset;
+            writeByteArray(new byte[offsetCount], stream);
+        }
+    }
+
+    /**
      * Writing tl-object to stream
      *
      * @param v      tl-object
@@ -401,7 +429,7 @@ public class StreamingUtils {
             startOffset = 4;
         }
         TLBytes res = context.allocateBytes(count);
-        readBytes(res.getData(), res.getOffset(), res.getLen(), stream);
+        readBytes(res.getData(), res.getOffset(), res.getLength(), stream);
 
         int offset = (count + startOffset) % 4;
         if (offset != 0) {

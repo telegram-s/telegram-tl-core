@@ -22,7 +22,7 @@ public class TLBytes {
         return offset;
     }
 
-    public int getLen() {
+    public int getLength() {
         return len;
     }
 }

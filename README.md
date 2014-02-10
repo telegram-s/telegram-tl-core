@@ -4,7 +4,7 @@ Contains basic classes for working with TL Serialization.
 
 This implementation contains minimul required subset of TL for working with telegraph.org messaging service.
 
-[![TL Core build server](http://ci.telegram-s.org/app/rest/builds/buildType:%28id:TypeLanguage_JavaTlCore%29/statusIcon)](http://ci.81port.com/viewType.html?buildTypeId=TypeLanguage_JavaTlCore)
+[![TL Core build server](http://ci.telegram-s.org/app/rest/builds/buildType:%28id:TypeLanguage_JavaTlCore%29/statusIcon)](http://ci.telegram-s.org/viewType.html?buildTypeId=TypeLanguage_JavaTlCore)
 
 More information
 ----------------

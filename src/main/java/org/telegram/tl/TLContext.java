@@ -195,4 +195,8 @@ public abstract class TLContext {
     public TLBytes allocateBytes(int size) {
         return new TLBytes(new byte[size], 0, size);
     }
+
+    public void releaseBytes(TLBytes unused) {
+
+    }
 }

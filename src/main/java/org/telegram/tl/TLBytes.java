@@ -38,6 +38,8 @@ public class TLBytes {
         if (offset == 0 && len == data.length) {
             return data;
         }
-        return Arrays.copyOfRange(data, offset, len);
+        byte[] result = new byte[len];
+        System.arraycopy(data, offset, result, 0, len);
+        return result;
     }
 }

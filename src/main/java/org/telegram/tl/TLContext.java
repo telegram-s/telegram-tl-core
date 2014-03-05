@@ -18,8 +18,8 @@ import java.util.zip.GZIPInputStream;
  * @author Korshakov Stepan <me@ex3ndr.com>
  */
 public abstract class TLContext {
-    private HashMap<Integer, Class> registeredClasses = new HashMap<Integer, Class>();
-    private HashMap<Integer, Class> registeredCompatClasses = new HashMap<Integer, Class>();
+    private final HashMap<Integer, Class> registeredClasses = new HashMap<Integer, Class>();
+    private final HashMap<Integer, Class> registeredCompatClasses = new HashMap<Integer, Class>();
 
     public TLContext() {
         init();
